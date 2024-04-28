@@ -1,0 +1,169 @@
+mainactivity.java
+
+package com.example.exp9;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class MainActivity extends AppCompatActivity {
+    EditText et;
+    TextView text;
+    TextView text2;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        et = findViewById(R.id.editTextText);
+        text = findViewById(R.id.textView);
+        text2 = findViewById(R.id.textView2);
+    }
+    public void save(View view){
+
+        String tex = et.getText().toString();
+        FileOutputStream fos = null;
+
+        try{
+            fos = openFileOutput("readFile.txt",MODE_PRIVATE);
+            fos.write(tex.getBytes());
+            Toast.makeText(this, "Saved to "+getFilesDir() + "/"+"readFile.txt", Toast.LENGTH_SHORT).show();
+
+        }
+        catch(FileNotFoundException e){
+            throw  new RuntimeException(e);
+        }
+        catch(IOException e){
+            throw new RuntimeException(e);
+        }
+        finally {
+            if(fos!=null){
+                try{
+                    fos.close();
+                }
+                catch (IOException e){
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+
+
+    }
+    public void load(View view){
+
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = openFileInput("readFile.txt");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            StringBuilder  stringBuilder = new StringBuilder();
+            String tex ;
+            while((tex = bufferedReader.readLine())!=null){
+                stringBuilder.append(tex).append("\n");
+            }
+
+            text2.setText(stringBuilder.toString());
+        }
+        catch(FileNotFoundException e){
+            throw  new RuntimeException(e);
+        }
+        catch(IOException e){
+            throw new RuntimeException(e);
+        }
+        finally {
+            if(fileInputStream!=null){
+                try{
+                    fileInputStream.close();
+                }
+                catch (IOException e){
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+
+    }
+}
+
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Internal Storage "
+        android:textColor="#673AB7"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.059" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="206dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="124dp"
+        android:ems="10"
+        android:hint="Type your text to store"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:onClick="save"
+        android:text="SAVE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.309"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:onClick="load"
+        android:text="LOAD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
