@@ -1,3 +1,5 @@
+************************************************************************************
+
 mainactivity.java
 
 package com.example.exp5;
@@ -146,6 +148,8 @@ public class MainActivity extends AppCompatActivity  implements Example_Dialog.E
     }
 }
 
+********************************************************************************************************************
+
 
 Example_Dialog.java
 
@@ -212,6 +216,8 @@ public class Example_Dialog extends AppCompatDialogFragment {
 
     }
 }
+
+**********************************************************************************************************************
 
 
 activity_main.xml
@@ -298,7 +304,7 @@ activity_main.xml
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+***********************************************************************************************************
 
 dialog_layout.xml
 
@@ -340,6 +346,8 @@ dialog_layout.xml
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+***************************************************************************************************************************
+
 MAKE NEW FOLDER IN RES give name menu
 
 
@@ -379,6 +387,10 @@ optionmenu.xml
 
 </menu>
 
+
+************************************************************************************************************
+
+
 popup.xml
 
 
@@ -401,5 +413,9 @@ android:id="@+id/react_native"
 android:title="React Native" />
 </menu>
 
+***********************************************************************************************************
+
 
 add this 3 files in menu popup,context and dialog
+and there will be 2 files in layout activity_main,dialog_layout in layout folder
+and 2 files will be there in java mainactivity and example_dialog
