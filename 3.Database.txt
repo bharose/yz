@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+****************************************************************************************************************************
 
 
 DBHelper.java
@@ -96,6 +96,8 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 }
+
+*********************************************************************************************************************
 
 
 
@@ -162,3 +164,13 @@ activity_main.xml
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+*********************************************************************************************************************
+
+
+Note:-
+
+Device explorer-> data -> data-> com.example.assignment03 -> databases -> login.db (saveas locally)
+Open online databaseViewer see users.
