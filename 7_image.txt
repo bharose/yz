@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
+
+**************************************************************************************************************
+
 activity_main.xml
 
 <?xml version="1.0" encoding="utf-8"?>
@@ -69,6 +72,9 @@ activity_main.xml
         app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+****************************************************************************************************************
 
 
 setting.gradle => dependencies add=> maven { url=uri("https://jitpack.io" )}
